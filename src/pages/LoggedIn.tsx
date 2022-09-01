@@ -1,4 +1,4 @@
-export default function () {
+export default function LoggedIn() {
   return (
     <div>
       <h1>Welcome!</h1>
@@ -6,3 +6,6 @@ export default function () {
     </div>
   )
 }
+
+// const LoggedInPage = withLoggedIn(LoggedIn)
+// export default LoggedInPage

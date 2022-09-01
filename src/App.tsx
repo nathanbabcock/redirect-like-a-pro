@@ -1,10 +1,14 @@
-import Home from './pages/Home'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Admin from './pages/Admin'
+import Home from './pages/Home'
+import LoggedIn from './pages/LoggedIn'
 import WrongWay from './pages/WrongWay'
 import WrongWayV2 from './pages/WrongWayV2'
-import LoggedInRoute from './routes/LoggedInRoute'
-import LoggedIn from './pages/LoggedIn'
-import AdminRoute from './routes/AdminRoute'
+import AdminRoute, { withAdmin } from './routes/AdminRoute'
+import LoggedInRoute, { withLoggedIn } from './routes/LoggedInRoute'
+
+const LoggedInPage = withLoggedIn(LoggedIn)
+const AdminPage = withAdmin(Admin)
 
 export default function App() {
   return (
@@ -16,8 +20,12 @@ export default function App() {
         <Route path="/wrong-way-v2" element={<WrongWayV2 />} />
         <Route path="/wrong-way-v2" element={<WrongWayV2 />} />
 
+        <Route path="/logged-in" element={<LoggedInPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+
+        {/* Alternative, using wrapped components instead of higher-order */}
         <Route
-          path="/logged-in"
+          path="/logged-in-v2"
           element={
             <LoggedInRoute>
               <LoggedIn />
@@ -25,15 +33,7 @@ export default function App() {
           }
         />
 
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <LoggedIn />
-            </AdminRoute>
-          }
-        />
-
+        {/* Old react-router v5 style, no longer works: */}
         {/* <LoggedInRoute path="/logged-in" element={<LoggedInRoute />} /> */}
         {/* <AdminRoute path="/admin" element={<Admin />} /> */}
       </Routes>

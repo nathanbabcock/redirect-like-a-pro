@@ -37,3 +37,12 @@ export type ConditionalRouteProps = {
   /** Captures any other props which might be passed in and applied to the internal <Route> */
   [key: string]: any
 }
+
+export const withCondition =
+  (
+    Component: React.FunctionComponent,
+    condition: boolean,
+    redirectTo: string
+  ) =>
+  (props: any) =>
+    condition ? <Component {...props} /> : <Navigate to={redirectTo} replace />

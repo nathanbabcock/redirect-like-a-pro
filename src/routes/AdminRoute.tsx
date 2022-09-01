@@ -1,6 +1,6 @@
 import type { RouteProps } from 'react-router-dom'
 import { userIsAdmin, userLoggedIn } from '../auth'
-import ConditionalRoute from './ConditionalRoute'
+import ConditionalRoute, { withCondition } from './ConditionalRoute'
 
 export default function AdminRoute({ children }: RouteProps) {
   return (
@@ -12,3 +12,6 @@ export default function AdminRoute({ children }: RouteProps) {
     </ConditionalRoute>
   )
 }
+
+export const withAdmin = (Component: React.FunctionComponent) =>
+  withCondition(Component, userLoggedIn() && userIsAdmin(), '/home')
