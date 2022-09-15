@@ -19,7 +19,7 @@ The application contains just a few routes, with examples in the following order
    - Uses `useEffect()` to redirect if the user is not logged in
    - This works, but it is messy and must be included in every component (hard to maintain)
    - App route: <https://localhost/wrong-way>
-   - Source code: [`WrongWay.tsx`](./src/pages/WrongWay.tsx)
+   - Source code: [`NaiveApproach.tsx`](./src/pages/NaiveApproach.tsx)
 2. A more maintainable approach using a **custom component**
    - Introduces a `<LoggedInRoute>` component
    - App route: <https://localhost/logged-in-v2>
@@ -27,4 +27,4 @@ The application contains just a few routes, with examples in the following order
 3. An equivalent approach using a **higher order component** (the "best" way)
    - Functions the same as #2, but the API is a little cleaner to write!
    - App route: <https://localhost/logged-in>
-   - Source code: [`LoggedInRoute.tsx`](./src/routes/LoggedInRoute.tsx)
+   - Source code: [`withLoggedIn.tsx`](./src/routes/withLoggedIn.tsx)
