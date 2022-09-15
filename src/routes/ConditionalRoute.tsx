@@ -1,18 +1,13 @@
-import React, { ReactNode } from 'react'
-import { Navigate, Route } from 'react-router-dom'
-import type { RouteProps } from 'react-router-dom'
-import { userLoggedIn } from '../auth'
+import { ReactNode } from 'react'
+import { Navigate } from 'react-router-dom'
 
 /**
  * Only renders (or allows navigation to) a route if a condition is met.
  * Otherwise, it redirects to a different specified route.
  *
- * Supports and passes through all properties of `react-router-dom`'s {@link Route},
- * including `Route.element`}`, `Route.component`, and `Route.children`.
- *
  * This is an abstract foundation for specific types of routing protection, including:
- * - {@link LoggedInRoute}
- * - {@link AdminRoute}
+ * - [./LoggedInRoute.tsx](./LoggedInRoute.tsx)
+ * - [./AdminRoute.tsx](./AdminRoute.tsx)
  */
 export default function ConditionalRoute({
   condition,
@@ -37,12 +32,3 @@ export type ConditionalRouteProps = {
   /** Captures any other props which might be passed in and applied to the internal <Route> */
   [key: string]: any
 }
-
-export const withCondition =
-  (
-    Component: React.FunctionComponent,
-    condition: boolean,
-    redirectTo: string
-  ) =>
-  (props: any) =>
-    condition ? <Component {...props} /> : <Navigate to={redirectTo} replace />

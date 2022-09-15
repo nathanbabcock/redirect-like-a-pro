@@ -1,43 +1,57 @@
-import { useState } from 'react'
-import logo from '../logo.svg'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { UserContext } from '../UserContext'
 import './Home.css'
 
 function Home() {
-  const [count, setCount] = useState(0)
+  const { loggedIn, login, logout } = useContext(UserContext)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount(count => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="App App-header">
+      <h1>React Router 6 Demo App</h1>
+      <p>
+        Welcome! This app contains three demo implementations of routes using{' '}
+        <code>react-router@6.0.0</code>.
+      </p>
+      <p>
+        In this demo, all routes require the user to be logged in. Three
+        approaches to implementing this feature are shown, in increasing order
+        of maintainability and robustness.
+      </p>
+
+      <p>
+        You are currently <strong>logged {loggedIn ? 'in' : 'out'}</strong>.{' '}
+        <button onClick={loggedIn ? logout : login}>
+          Log {loggedIn ? 'out' : 'in'}
+        </button>
+      </p>
+
+      <h2>The three methods:</h2>
+      <ol>
+        <li>
+          <Link to="/naive-approach">
+            <code>/naive-approach</code>
+          </Link>
+          , using <code>useEffect()</code> to redirect if the user is not logged
+          in.
+        </li>
+
+        <li>
+          <Link to="/custom-component">
+            <code>/custom-component</code>
+          </Link>
+          , using a custom <code>&lt;LoggedInComponent&gt;</code> to centralize
+          logic.
+        </li>
+
+        <li>
+          <Link to="/higher-order-component">
+            <code>/higher-order-component</code>
+          </Link>
+          , using a higher-order <code>withLoggedIn</code> wrapper to make the
+          API more concise.
+        </li>
+      </ol>
     </div>
   )
 }
