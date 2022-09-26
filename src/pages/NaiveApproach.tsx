@@ -7,11 +7,10 @@ export default function NaiveApproach() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Let's simulate a computation-heavy useEffect() that blocks execution for a while
+    // Let's simulate a computation-heavy useEffect() that runs asynchronously
     // This is an extreme case, but it shows that the protected page's effects all execute BEFORE the redirect
     // In a real-world example, this might be a fetch to a protected database endpoint
-    let start = new Date().getTime()
-    while (new Date().getTime() - start < 500) continue
+    setTimeout(() => console.log('simulated an expensive useEffect()'), 500)
   })
 
   useEffect(() => {

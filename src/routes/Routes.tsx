@@ -1,19 +1,21 @@
 import { Route, Routes } from 'react-router-dom'
+import _404 from '../pages/404'
 import AccessDenied from '../pages/AccessDenied'
 import CustomComponentPage from '../pages/CustomComponent'
 import HigherOrderComponentPage from '../pages/HigherOrderComponent'
 import Home from '../pages/Home'
 import NaiveApproach from '../pages/NaiveApproach'
 import LoggedInRoute from './LoggedInRoute'
-import { withLoggedIn } from './withLoggedIn'
+import { withLoggedIn, withLoggedOut } from './withLoggedIn'
 
 export function AppRoutes() {
   const HigherOrderRoute = withLoggedIn(HigherOrderComponentPage)
+  const AccessDeniedPage = withLoggedOut(AccessDenied)
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/access-denied" element={<AccessDenied />} />
+      <Route path="/access-denied" element={<AccessDeniedPage />} />
 
       {/* Method 1: Using `useEffect()` as a redirect */}
       <Route path="/naive-approach" element={<NaiveApproach />} />
@@ -33,6 +35,9 @@ export function AppRoutes() {
 
       {/* Addendum: Old react-router v5 style, which no longer works: */}
       {/* <LoggedInRoute path="/router-v5" element={<LoggedIn />} /> */}
+
+      {/* 👇️ only match this when no other routes match */}
+      <Route path="*" element={<_404 />} />
     </Routes>
   )
 }
