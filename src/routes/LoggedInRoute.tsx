@@ -9,10 +9,7 @@ import ConditionalRoute from './ConditionalRoute'
  */
 export default function LoggedInRoute({ children }: RouteProps) {
   return (
-    <ConditionalRoute
-      condition={useContext(UserContext).loggedIn}
-      redirectTo="/access-denied"
-    >
+    <ConditionalRoute condition={useContext(UserContext).loggedIn} redirectTo="/access-denied">
       {children}
     </ConditionalRoute>
   )

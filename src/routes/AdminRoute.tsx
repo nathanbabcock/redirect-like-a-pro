@@ -11,10 +11,7 @@ export default function AdminRoute({ children }: RouteProps) {
   const { loggedIn, isAdmin } = useContext(UserContext)
 
   return (
-    <ConditionalRoute
-      condition={loggedIn && isAdmin}
-      redirectTo="/access-denied"
-    >
+    <ConditionalRoute condition={loggedIn && isAdmin} redirectTo="/access-denied">
       {children}
     </ConditionalRoute>
   )

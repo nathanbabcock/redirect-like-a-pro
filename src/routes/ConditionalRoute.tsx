@@ -12,8 +12,8 @@ import { Navigate } from 'react-router-dom'
 export default function ConditionalRoute({
   condition,
   redirectTo,
-  children,
-}: ConditionalRouteProps): JSX.Element {
+  children
+}: ConditionalRouteProps) {
   return condition ? <>{children}</> : <Navigate to={redirectTo} replace />
 }
 
