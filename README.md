@@ -2,8 +2,6 @@
 
 This code is published as part of the corresponding blog article at the Toptal Engineering Blog.
 
-<https://toptal.com/react/react-router-tutorial-redirect-like-a-pro>
-
 Visit <https://www.toptal.com/blog> and subscribe to our newsletter to read great articles!
 
 We introduce an elegant way to organize React Router code that keeps routes and authentication logic clear, centralized, and easy to maintain.
