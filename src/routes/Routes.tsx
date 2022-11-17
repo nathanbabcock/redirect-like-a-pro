@@ -8,14 +8,13 @@ import NaiveApproach from '../pages/NaiveApproach'
 import LoggedInRoute from './LoggedInRoute'
 import { withLoggedIn, withLoggedOut } from './withLoggedIn'
 
-export function AppRoutes() {
-  const HigherOrderRoute = withLoggedIn(HigherOrderComponentPage)
-  const AccessDeniedPage = withLoggedOut(AccessDenied)
+export const AuthRoute = (...args: Parameters<typeof Route>) => Route(...args)
 
+export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/access-denied" element={<AccessDeniedPage />} />
+      <Route path="/access-denied" element={withLoggedOut(AccessDenied)()} />
 
       {/* Method 1: Using `useEffect()` as a redirect */}
       <Route path="/naive-approach" element={<NaiveApproach />} />
@@ -31,7 +30,7 @@ export function AppRoutes() {
       />
 
       {/* Method 3: Using a higher-order component (best of both worlds!) */}
-      <Route path="/higher-order-component" element={<HigherOrderRoute />} />
+      <Route path="/higher-order-component" element={withLoggedIn(HigherOrderComponentPage)()} />
 
       {/* Addendum: Old react-router v5 style, which no longer works: */}
       {/* <LoggedInRoute path="/router-v5" element={<LoggedIn />} /> */}

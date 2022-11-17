@@ -11,7 +11,7 @@ export function withCondition(
   condition: boolean,
   redirectTo: string
 ) {
-  return function InnerComponent(props: any) {
+  return function InnerComponent(props?: any) {
     return condition ? <Component {...props} /> : <Navigate to={redirectTo} replace />
   }
 }
